@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "db排序",
+  "version": "1.0",
+  "description": "自动根据评分对页面上的 div 进行排序。",
+  "icons": {
+    "16": "icon16.png"
+  },
+  "content_scripts": [{
+    "matches": ["*://*/*rankings/movies*"],
+    "js": ["sort-by-score.js"]
+  }],
+  "permissions": ["activeTab", "scripting"]
+}

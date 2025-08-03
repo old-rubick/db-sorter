@@ -22,11 +22,16 @@
   // 提取分数并排序
   items.sort((a, b) => {
     function getScore(el) {
-      const scoreSpan = el.querySelector('a .score span'); // 根据实际结构调整
-      if (!scoreSpan) return 0;
+      // 根据你的 XPath：el -> a -> div[3] -> span
+      const a = el.querySelector('a');
+      if (!a) return 0;
 
-      const text = scoreSpan.textContent.trim();
-      const match = text.match(/([\d\.]+)分/);
+      const targetDiv = a.querySelector('div:nth-child(3)'); // 第3个 div
+      const span = targetDiv?.querySelector('span');
+      if (!span) return 0;
+
+      const text = span.textContent.trim();
+      const match = text.match(/([\d.]+)分/);
       return match ? parseFloat(match[1]) : 0;
     }
 
